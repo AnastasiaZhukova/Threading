@@ -1,12 +1,13 @@
 package com.github.anastasiazhukova.threading;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String ERROR = "Error";
 
     private View mAsyncTaskProgressView;
     private View mAsyncTaskButton;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         mAsyncTaskButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 handleAsyncTaskEvent();
             }
         });
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         mExecutorServiceButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 handleExecutorServiceEvent();
             }
         });
@@ -61,10 +62,75 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void handleAsyncTaskEvent() {}
+    private void handleAsyncTaskEvent() {
+        mAsyncTaskProgressView.setVisibility(View.VISIBLE);
+        ThreadingManager.getInstance().load(ThreadingManager.ASYNC_TASK,
+                new ThreadingManager.ThreadingListener() {
 
-    private void handleExecutorServiceEvent() {}
+                    @Override
+                    public void onSuccess(final String pResult) {
+                        setResult(pResult);
+                        mAsyncTaskProgressView.setVisibility(View.INVISIBLE);
+                    }
 
-    private void handleThreadEvent() {}
+                    @Override
+                    public void OnError(final Throwable pThrowable) {
+                        setError(ERROR);
+                        mAsyncTaskProgressView.setVisibility(View.INVISIBLE);
+
+                    }
+                });
+    }
+
+    private void handleExecutorServiceEvent() {
+        mExecutorServiceProgressView.setVisibility(View.VISIBLE);
+        ThreadingManager.getInstance().load(ThreadingManager.EXECUTOR_SERVICE,
+                new ThreadingManager.ThreadingListener() {
+
+                    @Override
+                    public void onSuccess(final String pResult) {
+                        setResult(pResult);
+                        mExecutorServiceProgressView.setVisibility(View.INVISIBLE);
+                    }
+
+                    @Override
+                    public void OnError(final Throwable pThrowable) {
+                        setError(ERROR);
+                        mExecutorServiceProgressView.setVisibility(View.INVISIBLE);
+
+                    }
+                });
+    }
+
+    private void handleThreadEvent() {
+        mThreadProgressView.setVisibility(View.VISIBLE);
+        ThreadingManager.getInstance().load(ThreadingManager.THREAD,
+                new ThreadingManager.ThreadingListener() {
+
+                    @Override
+                    public void onSuccess(final String pResult) {
+                        setResult(pResult);
+                        mThreadProgressView.setVisibility(View.INVISIBLE);
+                    }
+
+                    @Override
+                    public void OnError(final Throwable pThrowable) {
+                        setError(ERROR);
+                        mThreadProgressView.setVisibility(View.INVISIBLE);
+
+                    }
+                });
+
+    }
+
+    private void setResult(final String pResult) {
+        mTextView.setText(pResult);
+
+    }
+
+    private void setError(final String pError) {
+        mTextView.setText(pError);
+
+    }
 
 }
