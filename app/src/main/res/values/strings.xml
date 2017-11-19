@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Threading</string>
+    <string name="textView_main_base">Press any button to try threading</string>
+    <string name="button_thread">Thread</string>
+    <string name="button_asynctask">AsyncTask</string>
+    <string name="button_executorservice">Executor Service</string>
 </resources>

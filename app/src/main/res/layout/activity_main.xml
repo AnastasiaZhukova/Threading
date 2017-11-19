@@ -1,19 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.github.anastasiazhukova.threading.MainActivity">
 
     <TextView
+        android:id="@+id/textView_main"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:text="@string/textView_main_base"
+        android:textSize="20sp"
+        tools:text="Some veeeeeeeeeeeeeeeeeeeeeeeeeeeery huge text"/>
 
-</android.support.constraint.ConstraintLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/colorPrimaryDark"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+
+        <Button
+            android:id="@+id/button_asynctask"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="4dp"
+            android:text="@string/button_asynctask"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar_asynctask"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:indeterminateOnly="true"
+            android:visibility="invisible"
+            tools:visibility="visible"/>
+
+        <Button
+            android:id="@+id/button_executorservice"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="4dp"
+            android:text="@string/button_executorservice"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar_executorservice"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:indeterminateOnly="true"
+            android:visibility="invisible"
+            tools:visibility="visible"/>
+
+        <Button
+            android:id="@+id/button_thread"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="4dp"
+            android:text="@string/button_thread"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar_thread"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:indeterminateOnly="true"
+            android:visibility="invisible"
+            tools:visibility="visible"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
